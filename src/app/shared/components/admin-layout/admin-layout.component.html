@@ -1,0 +1,51 @@
+<div>
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary shadow">
+    <div class="container-fluid">
+      <div class="navbar-brand">
+        <img src="../../../../favicon.ico" alt="Logo" />
+      </div>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <i class="bi bi-grid-1x2-fill small"></i>
+              داشبورد
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/products']" routerLinkActive="active">
+              <i class="bi bi-cart-fill small"></i>
+              محصولات
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/about-project']" routerLinkActive="active">
+              <i class="bi bi-question-circle-fill small"></i>
+              درباره پروژه</a>
+          </li>
+
+          <li class="nav-item d-md-none ">
+            <button type="button" class="btn text-white" title="خروج" (click)="onExit()">خروج</button>
+          </li>
+        </ul>
+
+      </div>
+
+      <button type="button" class="btn d-none d-md-inline text-white" (click)="onExit()" title="خروج">
+        خروج
+      </button>
+    </div>
+  </nav>
+
+  <div class="p-4">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div>
+  <div class="col-12" *ngIf="isLoading; else product_content">
+    <app-loading></app-loading>
+  </div>
+
+  <ng-template #product_content>
+    <div class="card p-2" *ngIf="product; else product_not_found">
+      <div class="card-header border-0 py-3 mb-3">
+        <b>عنوان محصول: </b>
+        {{ product.title }}
+      </div>
+
+      <div class="row g-0 align-items-center">
+        <div class="col-md-4 text-center">
+          <img [src]="product.image" class="img-fluid product-details-img" [alt]="product.title">
+        </div>
+
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text"><b>قیمت: </b>{{ product.price }} دلار</p>
+            <p class="card-text"><b>دسته‌بندی: </b>{{ product.category }}</p>
+            <p class="card-text"><b>توضیحات: </b> {{ product.description }}</p>
+            <p class="card-text">
+              <b>امتیاز: </b>{{ product.rating?.rate }}
+              <small>({{ product.rating?.count }} نفر)</small>
+            </p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="card-footer mt-3 border-0 d-flex justify-content-center">
+        <a class="btn btn-warning mx-3" [routerLink]="['/products']">
+          <i class="bi bi-arrow-right mx-1"></i>
+          <small>بازگشت به لیست محصولات</small>
+        </a>
+
+        <a class="btn btn-secondary mx-2" [routerLink]="['/products/edit/'+ product.id]">
+          <i class="bi bi-pen-fill mx-1"></i>
+          <small>ویرایش</small>
+        </a>
+      </div>
+    </div>
+
+    <ng-template #product_not_found>
+      <h2 class="text-center mt-3">دیتایی برای نمایش وجود ندارد.</h2>
+    </ng-template>
+  </ng-template>
+</div>

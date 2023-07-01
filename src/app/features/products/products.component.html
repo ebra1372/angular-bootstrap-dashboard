@@ -1,0 +1,77 @@
+<div class="container-fluid">
+  <div class="row g-4 justify-content-between">
+    <div class="col-12 col-md-4">
+      <button class="btn btn-primary rounded-1" title="ثبت محصول جدید" type="button" (click)="onNewProduct()">
+        <i class="bi bi-plus-lg"></i>
+        ثبت محصول جدید
+      </button>
+    </div>
+
+    <div class="col-12 col-md-3 d-flex flex-row align-items-center">
+      <span class="small text-nowrap">تعداد نمایش: &nbsp;</span>
+      <select class="form-select" [(ngModel)]="limit" (change)="onChangeLimit()" [disabled]="isDeleting || isLoading">
+        <option *ngFor="let c of limitList" [value]="c.value">{{c.label}}</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-12">
+      <div class="table-responsive">
+        <table class="table table-striped border" [ngClass]="{'table-disabled': isDeleting}">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">تصویر</th>
+              <th scope="col">نام محصول</th>
+              <th scope="col">قیمت</th>
+              <th scope="col">عملیات</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngIf="isLoading; else products_content">
+              <td colspan="5">
+                <app-loading></app-loading>
+              </td>
+            </tr>
+
+            <ng-template #products_content>
+              <tr *ngIf="!productsList.length; else products_list">
+                <td colspan="5" class="text-center py-4">
+                  <h4>محتوایی برای نمایش وجود ندارد.</h4>
+                </td>
+              </tr>
+
+              <ng-template #products_list>
+                <tr *ngFor="let item of productsList; let i=index">
+                  <th scope="row">{{ i + 1 }}</th>
+                  <td><img class="img-fluid img-thumbnail table-img" [src]="item.image" [alt]="item.title" /></td>
+                  <td>{{ item.title }}</td>
+                  <td>{{ item.price }}</td>
+
+                  <td>
+                    <button class="btn btn-sm m-1" title="مشاهده جزئیات" type="button"
+                      (click)="onShowDetailsProduct(item.id)">
+                      <i class="bi bi-eye-fill"></i>
+                    </button>
+
+                    <button class="btn text-primary btn-sm m-1" title="ویرایش" type="button"
+                      (click)="onEditProduct(item.id)">
+                      <i class="bi bi-pen-fill"></i>
+                    </button>
+
+                    <button class="btn btn-sm text-danger m-1" title="حذف" type="button"
+                      (click)="onDeleteProduct(item.id)">
+                      <i class="bi bi-trash3-fill"></i>
+                    </button>
+                  </td>
+                </tr>
+              </ng-template>
+            </ng-template>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<button [class]="'btn ' + class" [disabled]="isDisabled" [type]="type" (click)="onClick()">
+  <i *ngIf="!isLoading  && beforLabelIcon" [class]="beforLabelIcon"></i>
+
+  <span *ngIf="isLoading" class="spinner-border spinner-border-sm mx-2" role="status" aria-hidden="true"></span>
+
+  {{label}}
+</button>

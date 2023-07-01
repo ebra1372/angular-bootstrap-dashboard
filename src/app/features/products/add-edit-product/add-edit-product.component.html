@@ -1,0 +1,50 @@
+<div class="my-3">
+  <h4>{{isEditing ? "ویرایش محصول:":"محصول جدید:"}}</h4>
+</div>
+
+<div class="container-fluid bg-light py-4 border">
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div class="row g-3">
+      <div class="col-12 col-md-6 col-lg-4">
+        <label class="form-label small">عنوان محصول</label>
+        <input type="text" class="form-control" formControlName="title" />
+        <small class="text-danger small" *ngIf="title && title.invalid && title.touched">
+          عنوان محصول الزامی است
+        </small>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <label class="form-label small">قیمت</label>
+        <input type="number" class="form-control" formControlName="price" />
+        <small class="text-danger small" *ngIf="price && price.invalid && price.touched">
+          قیمت الزامی است
+        </small>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4">
+        <label class="form-label small">دسته‌بندی</label>
+        <select class="form-select" formControlName="category">
+          <option *ngFor="let c of categoriesList" [value]="c">{{c}}</option>
+        </select>
+        <small class="text-danger small" *ngIf="category && category.invalid && category.touched">
+          دسته‌بندی الزامی است
+        </small>
+      </div>
+
+      <div class="col-12">
+        <label class="form-label small">توضیحات <small>(اختیاری)</small></label>
+        <textarea class="form-control" formControlName="description"></textarea>
+      </div>
+
+      <div class="col-12 d-flex justify-content-end">
+        <a class="btn btn-warning mx-3" [routerLink]="['/products']">
+          <i class="bi bi-arrow-right mx-1"></i>
+          <small>بازگشت به لیست محصولات</small>
+        </a>
+
+        <app-base-button label="ذخیره" beforLabelIcon="bi bi-file-earmark-arrow-down-fill mx-2"
+          class="btn-primary rounded-1" [isLoading]="isLoading" [isDisabled]="isLoading"></app-base-button>
+      </div>
+    </div>
+  </form>
+</div>

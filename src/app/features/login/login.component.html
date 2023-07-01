@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="container-fluid">
+    <div class="row justify-content-around align-items-center">
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card px-3 bg-light">
+          <div class="card-body">
+            <h5 class="card-title mb-3">خوش آمدید</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary small">
+              جهت ورود به پنل کاربری اطلاعات زیر را تکمیل کنید.
+
+              <i class="bi bi-info-circle-fill info-icon" title="جهت ورود به پنل از اطلاعات پیشفرض استفاده کنید."></i>
+            </h6>
+
+            <hr class="hr" />
+
+            <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+              <div class="row g-3">
+                <div class="col-12">
+                  <label class="form-label small">نام کاربری</label>
+                  <input type="text" class="form-control" formControlName="username" />
+                  <small class="text-danger small" *ngIf="username && username.invalid && username.touched">
+                    نام کاربری الزامی است
+                  </small>
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label small">رمز عبور</label>
+                  <input type="password" class="form-control" formControlName="password" />
+                  <small class="text-danger small" *ngIf="password && password.invalid && password.touched">
+                    رمز عبور الزامی است
+                  </small>
+                </div>
+
+                <div class="col-12">
+                  <app-base-button label="ورود" beforLabelIcon="bi bi-door-open mx-2" class="btn-primary rounded-1"
+                    [isLoading]="isLoading" [isDisabled]="isLoading"></app-base-button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-lg-4 d-none d-md-inline">
+        <img src="assets/svg/data-protection.svg" class='w-100' />
+      </div>
+    </div>
+  </div>
+</div>
