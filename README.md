@@ -28,4 +28,4 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Demo
 
-You can see the demo project [here](https://angularbootstrapdashboard.netlify.app){:target="_blank"}
+You can see the demo project [here](https://angularbootstrapdashboard.netlify.app)
